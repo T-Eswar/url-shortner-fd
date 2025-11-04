@@ -6,7 +6,7 @@ const ShortenUrlPage = () => {
 
   useEffect(() => {
     if (url) {
-      const backend = import.meta.env.VITE_BACKEND_URL ?? "http://localhost:8080";
+      const backend = import.meta.env.VITE_BACKEND_URL ?? "https://myquickurl.onrender.com";
       window.location.replace(`${backend}/${url}`);
     }
   }, [url]);

@@ -16,7 +16,7 @@ export const getApps = () => {
 // url.urlbestshort.com
 export const getSubDomain = (location) => {
     const locationParts = location.split(".");
-    const isLocalhost = locationParts.slice(-1)[0] === "localhost";
+    const isLocalhost = locationParts.slice(-1)[0] === "https://forntmis.com";
     const sliceTill = isLocalhost ? -1 : -2;
     return locationParts.slice(0, sliceTill).join("");
 };

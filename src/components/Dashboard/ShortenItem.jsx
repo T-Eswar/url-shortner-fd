@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import { useStoreContext } from '../../contextApi/ContextApi';
 import { Hourglass } from 'react-loader-spinner';
 import Graph from './Graph';
+import { Link } from 'react-router-dom';
 
 const ShortenItem = ({ originalUrl, shortUrl, clickCount, createdDate }) => {
   const { token } = useStoreContext();
@@ -35,7 +36,7 @@ const ShortenItem = ({ originalUrl, shortUrl, clickCount, createdDate }) => {
     setLoader(true);
     try {
       const { data } = await api.get(
-        `/api/urls/analytics/${selectedUrl}?startDate=2024-12-01T00:00:00&endDate=2025-12-31T23:59:59`,
+        `/api/urls/analytics/${selectedUrl}?startDate=2024-12-01T00:00:00&endDate=2030-12-31T23:59:59`,
         {
           headers: {
             'Content-Type': 'application/json',
@@ -68,14 +69,12 @@ const ShortenItem = ({ originalUrl, shortUrl, clickCount, createdDate }) => {
         <div className="flex-1 sm:space-y-1 max-w-full overflow-x-auto overflow-y-hidden">
          
           <div className="text-slate-900 pb-1 sm:pb-0 flex items-center gap-2">
-            <a
-              href={`${frontEndUrl}/s/${shortUrl}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[17px] font-montserrat font-[600] text-linkColor"
-            >
-              {subDomain + '/s/' + shortUrl}
-            </a>
+             <Link
+              target='_'
+              className='text-[17px]  font-montserrat font-[600] text-linkColor'
+              to={import.meta.env.VITE_REACT_FRONT_END_URL + "/s/" + `${shortUrl}`}>
+                  {subDomain + "/s/" + `${shortUrl}`}
+            </Link>
             <FaExternalLinkAlt className="text-linkColor" />
           </div>
 
